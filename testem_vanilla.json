@@ -1,0 +1,7 @@
+{
+    "launch_in_dev": ["Chrome"],
+    "src_files": [
+        "test/jquery-1.8.0.min.js",
+        "balancetext.js"
+    ]
+}
