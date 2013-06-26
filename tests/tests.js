@@ -15,32 +15,29 @@ function jQwrap (element) {
  */
 function getTestFile(filename, callback) {
     var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            callback(xhr.response);
-        }
-    };
-
-    xhr.open('GET', filename, true);
+    xhr.open('GET', filename, false);
     xhr.send();
 
+    if (xhr.status == 200) {
+        return xhr.response;
+    }
 }
 
 describe('Helper', function() {
 
     describe('removes balance text for', function() {
 
-        it('span tag', function() {
+        it('span tag', function(done) {
             var element = document.createElement('div');
-            getTestFile('tests/spanRemove.html', function (response) {
-                element.innerHTML = response;
-                debugger;
+            element.innerHTML = getTestFile('tests/spanRemove.html');
 
-                element = jQwrap(element);
-                var result = removeTags(element);
-                expect(element[0].getElementsByTagName('span').length).toBe(2);
-            });
+            element = jQwrap(element);
+            removeTags(element);
+
+            expect(element[0].getElementsByTagName('span').length).toEqual(1);
+            expect(element[0].getElementsByTagName('br').length).toEqual(1);
+            expect(element[0].getElementsByTagName('b').length).toEqual(1);
+
         });
 
         it('br tag', function() {

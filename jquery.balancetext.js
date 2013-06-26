@@ -44,12 +44,10 @@ var removeTags = function ($el) {
     $el.find('br[data-owner="balance-text"]').replaceWith(document.createTextNode(" "));
     var $span = $el.find('span[data-owner="balance-text"]');
     if ($span.length > 0) {
-        var txt = "";
         $span.each(function () {
-            txt += $(this).text();
-            $(this).remove();
+            var $this = $(this);
+            $this.replaceWith($this.html());
         });
-        $el.html(txt);
     }
 };
 
