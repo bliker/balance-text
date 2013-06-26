@@ -43,12 +43,10 @@ var isWS = function (c) {
 var removeTags = function ($el) {
     $el.find('br[data-owner="balance-text"]').replaceWith(document.createTextNode(" "));
     var $span = $el.find('span[data-owner="balance-text"]');
-    if ($span.length > 0) {
-        $span.each(function () {
-            var $this = $(this);
-            $this.replaceWith($this.html());
-        });
-    }
+    $span.each(function () {
+        var $this = $(this);
+        $this.replaceWith($this.html());
+    });
 };
 
 /**
