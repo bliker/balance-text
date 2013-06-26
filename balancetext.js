@@ -44,6 +44,7 @@ var isWS = function (c) {
 var removeTags = function ($el) {
     $el.find('br[data-owner="balance-text"]').replaceWith(document.createTextNode(" "));
     var $span = $el.find('span[data-owner="balance-text"]');
+    console.log($span);
     if ($span.length > 0) {
         var txt = "";
         $span.each(function () {
